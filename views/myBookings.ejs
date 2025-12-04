@@ -1,0 +1,46 @@
+<%- include('./partials/header') %>
+
+  <div class="min-h-screen bg-zinc-900 text-white px-10 py-8">
+    <h1 class="text-3xl font-semibold mb-6">My Bookings</h1>
+
+    <% if (bookings.length===0) { %>
+      <p class="text-lg text-gray-400">No bookings found.</p>
+      <% } else { %>
+        <ul class="space-y-6">
+          <% bookings.forEach(booking=> { %>
+            <li class="p-5 bg-zinc-800 rounded-lg shadow-md">
+              <p>Booking ID: <%= booking._id %>
+              </p>
+              <p>Vehicle: <%= booking.vehicle.model %> (<%= booking.vehicle.type %>)</p>
+              <p>Pickup Location: <%= booking.pickupLocation %>
+              </p>
+              <p>Drop Location: <%= booking.dropLocation %>
+              </p>
+              <p>Status: <%= booking.bookingStatus %>
+              </p>
+              <p>Fare: ₹<%= booking.totalFare %>
+              </p>
+              <div class="mt-4 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full overflow-hidden">
+                  <img class="w-full h-full object-cover"
+                    src="/images/uploads/<%= booking.driver.profilepic || 'default.jpg' %>" alt="Driver Profile">
+                </div>
+                <p>Driver: <%= booking.driver.fullname %>
+                </p>
+              </div>
+              <% if (booking.bookingStatus !=="cancelled" && booking.bookingStatus !=="completed" ) { %>
+                <form method="POST" action="/users/cancel-booking/<%= booking._id %>" class="mt-3">
+                  <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">
+                    Cancel Booking
+                  </button>
+                </form>
+                <% } else { %>
+                  <p class="mt-2 italic text-yellow-400">Cannot cancel (already <%= booking.bookingStatus %>)</p>
+                  <% } %>
+            </li>
+            <% }); %>
+        </ul>
+        <% } %>
+  </div>
+
+  <%- include('./partials/footer') %>

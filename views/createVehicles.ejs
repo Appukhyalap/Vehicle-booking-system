@@ -1,0 +1,35 @@
+<%- include('./partials/header') %>
+
+<div class="container mx-auto px-4 py-8">
+  <h2 class="text-2xl font-bold mb-4">Book Vehicle</h2>
+
+  <form action="/users/bookVehicle" method="POST">
+    <div class="mb-4">
+      <label for="type" class="block font-medium">Type</label>
+      <input type="text" id="type" name="type" class="border rounded px-3 py-2 w-full" placeholder="e.g., sedan, SUV" required>
+    </div>
+
+    <div class="mb-4">
+      <label for="model" class="block font-medium">Model</label>
+      <input type="text" id="model" name="model" class="border rounded px-3 py-2 w-full" placeholder="e.g., Swift, Scorpio" required>
+    </div>
+
+    <div class="mb-4">
+      <label for="licensePlate" class="block font-medium">License Plate</label>
+      <input type="text" id="licensePlate" name="licensePlate" class="border rounded px-3 py-2 w-full" placeholder="e.g., KA01AB1234" required>
+    </div>
+
+    <div class="mb-4">
+      <label for="status" class="block font-medium">Status</label>
+      <select id="status" name="status" class="border rounded px-3 py-2 w-full">
+        <option value="available">Available</option>
+        <option value="booked">Booked</option>
+        <option value="maintenance">Maintenance</option>
+      </select>
+    </div>
+
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create Vehicle</button>
+  </form>
+</div>
+
+<%- include('./partials/footer') %>

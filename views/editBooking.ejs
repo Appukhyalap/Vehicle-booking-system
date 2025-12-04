@@ -1,0 +1,50 @@
+<%- include('./partials/header') %>
+
+  <div class="w-full max-w-md mx-auto mt-10 p-6 bg-white rounded shadow">
+    <h2 class="text-2xl font-bold mb-6">edit vehicleBooking</h2>
+
+    <form action="/users/editBooking/<%= booking._id %>" method="POST">
+      <div class="mb-4">
+        <label for="vehicleId" class="block text-sm font-medium mb-1">vehicleType</label>
+        <input type="text" name="vehicleType" id="vehicleId" placeholder="Enter Vehicle Type in small letters"
+          class="w-full border px-3 py-2 rounded" value="<%= booking.vehicleType %>" required />
+      </div>
+
+      <div class="mb-4">
+        <label for="pickupLocation" class="block text-sm font-medium mb-1">Pickup Location</label>
+        <input type="text" name="pickupLocation" id="pickupLocation" class="w-full border px-3 py-2 rounded" value="<%= booking.pickupLocation %>"required />
+      </div>
+
+      <div class="mb-4">
+        <label for="dropLocation" class="block text-sm font-medium mb-1">Drop Location</label>
+        <input type="text" name="dropLocation" id="dropLocation" class="w-full border px-3 py-2 rounded" value="<%= booking.dropLocation %>" required />
+      </div>
+
+      <div class="mb-4">
+        <label for="pickupDateTime" class="block text-sm font-medium mb-1">Pickup Date & Time</label>
+        <input type="datetime-local" name="pickupDateTime" id="pickupDateTime" class="w-full border px-3 py-2 rounded" value="<%= booking.pickupDateTime %>"
+          required />
+      </div>
+
+      <div class="mb-4">
+        <label for="dropDateTime" class="block text-sm font-medium mb-1">Drop Date & Time</label>
+        <input type="datetime-local" name="dropDateTime" id="dropDateTime" class="w-full border px-3 py-2 rounded" value="<%= booking.dropDateTime %>"
+          required />
+      </div>
+
+      <div class="mb-4">
+        <label for="paymentMethod">Payment Method:</label>
+        <select name="paymentMethod" value="<%= booking.paymentMethod %>" required>
+          <option value="card">Card</option>
+          <option value="cash">Cash</option>
+          <option value="wallet">Wallet</option>
+        </select>
+      </div>
+
+      <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+        Book Ride
+      </button>
+
+  </div>
+
+  <%- include('./partials/footer') %>

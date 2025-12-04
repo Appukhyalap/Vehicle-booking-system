@@ -1,0 +1,40 @@
+const mongoose = require("mongoose");
+
+const bookingSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
+    vehicle: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Vehicle",
+        required: true
+    },
+    pickupLocation: String,
+    dropLocation: String,
+    pickupDateTime: Date,
+    dropDateTime: Date,
+    driver: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User", // assuming drivers are users with role "driver"
+        required: true
+    },
+    isrideCompleted: {
+        type: Boolean,
+        default: false
+    },
+    totalFare: Number,
+    paymentStatus: {
+        type: String,
+        enum: ["pending", "completed", "failed"],
+        default: "pending"
+    },
+    bookingStatus: {
+        type: String,
+        enum: ["pending", "confirmed", "cancelled", "completed"],
+        default: "pending"
+    },
+});
+
+module.exports = mongoose.model("Booking", bookingSchema);

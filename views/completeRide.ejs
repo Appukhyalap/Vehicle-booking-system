@@ -1,0 +1,31 @@
+<%- include('./partials/header') %>
+
+
+<div class="px-10">
+  <div>
+    <a href="/users/bookVehicles">Book vehicles..</a>
+  </div>
+
+  <h1>Complete Ride</h1>
+  <p>Booking ID: <%= booking._id %></p>
+  <p>Customer: <%= booking.user.fullname %></p>
+  <p>Vehicle: <%= booking.vehicle.model %> (<%= booking.vehicle.type %>)</p>
+  <p>Status: <%= booking.bookingStatus %></p>
+  <p>Pickup: <%= booking.pickupLocation %></p>
+  <p>Drop: <%= booking.dropLocation %></p>
+  <p>Fare: ₹<%= booking.totalFare %></p>
+
+
+
+  <% if (booking.bookingStatus !== "completed" && booking.isrideCompleted !== true) { %>
+    <form method="POST" action="/users/ride/<%= booking._id %>/complete">
+      <button type="submit">Ride Mark as Completed</button>
+    </form>
+  <% } else { %>
+    <p class="text-2xl">Ride already completed ✅</p>
+  <% } %>
+
+</div>
+
+
+<%- include('./partials/footer') %>
